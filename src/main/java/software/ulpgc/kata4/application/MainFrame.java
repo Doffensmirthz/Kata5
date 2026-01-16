@@ -1,12 +1,11 @@
-package software.ulpgc.kata3.application;
+package software.ulpgc.kata4.application;
 
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
-import org.jfree.data.xy.IntervalXYDataset;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
-import software.ulpgc.kata3.viewModel.Histogram;
+import software.ulpgc.kata4.viewModel.Histogram;
 
 import javax.swing.*;
 import java.awt.*;
