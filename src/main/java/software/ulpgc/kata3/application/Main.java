@@ -15,5 +15,8 @@ public class Main {
         for(int bin : histogram){
             System.out.println(bin + " tiene " + histogram.count(bin) + " apariciones");
         }
+        MainFrame.create()
+                .display(histogram)
+                .setVisible(true);
     }
 }
