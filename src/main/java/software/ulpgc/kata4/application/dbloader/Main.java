@@ -19,20 +19,22 @@ public class Main {
     public static void main(String[] args) {
         try(Connection connection = openConnection()){
             importMoviesFromRemoteIfRequired(connection);
-            Stream<Movie> movies = new DatabaseStore(connection).movies();
+            Stream<Movie> movies = new DatabaseStore(connection).movies()
+                    .filter(m -> m.releaseYear() > 1900)
+                    .filter(m -> m.releaseYear() < 2050);
             Histogram histogram = new HistogramBuilder(movies.toList())
                     .title("Movies per year")
                     .x("Year")
                     .y("Frequency")
                     .legend("kata5 is2")
                     .build(Movie::releaseYear);
+            MainFrame.create().display(histogram).setVisible(true);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
 
     private static void importMoviesFromRemoteIfRequired(Connection connection) throws SQLException {
-        if (database.exists()) { return; }
         new DatabaseRecorder(connection).put(new RemoteMovieLoader().loadAll().stream());
     }
 

@@ -7,6 +7,7 @@ target/
 ### JOAN
 .class
 .jar
+.db
 
 
 ### IntelliJ IDEA ###
