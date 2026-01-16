@@ -22,12 +22,15 @@ public class DatabaseRecorder implements Recorder {
     @Override
     public void put(Stream<Movie> movies) {
         movies.forEach(this::record);
+
     }
 
     private void record(Movie movie) {
         try{
             write(movie);
             executeBatchIfRequired();
+            connection.commit();
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

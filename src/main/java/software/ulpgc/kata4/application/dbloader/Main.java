@@ -35,7 +35,9 @@ public class Main {
     }
 
     private static void importMoviesFromRemoteIfRequired(Connection connection) throws SQLException {
+        if(database.length() > 0) {return;}
         new DatabaseRecorder(connection).put(new RemoteMovieLoader().loadAll().stream());
+        connection.commit();
     }
 
     private static Connection openConnection() throws SQLException {
